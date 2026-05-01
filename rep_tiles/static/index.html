@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rep-tiles</title>
+  <link rel="stylesheet" href="/static/app.css" />
+</head>
+<body>
+  <!-- Live region for accessibility announcements -->
+  <div id="live-region" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <span class="wordmark">rep-tiles</span>
+    <div class="scale-control">
+      <label for="scale-slider" class="scale-label">n:</label>
+      <span id="scale-value" class="scale-chip">2</span>
+      <input
+        id="scale-slider"
+        type="range"
+        min="1" max="8" step="1" value="2"
+        aria-valuetext="scale 2"
+        aria-label="Scale"
+      />
+      <div class="scale-ticks">
+        <button type="button" class="scale-tick" data-scale="1" aria-label="Set scale to 1">1</button>
+        <button type="button" class="scale-tick" data-scale="2" aria-label="Set scale to 2">2</button>
+        <button type="button" class="scale-tick" data-scale="3" aria-label="Set scale to 3">3</button>
+        <button type="button" class="scale-tick" data-scale="4" aria-label="Set scale to 4">4</button>
+        <button type="button" class="scale-tick" data-scale="5" aria-label="Set scale to 5">5</button>
+        <button type="button" class="scale-tick" data-scale="6" aria-label="Set scale to 6">6</button>
+        <button type="button" class="scale-tick" data-scale="7" aria-label="Set scale to 7">7</button>
+        <button type="button" class="scale-tick" data-scale="8" aria-label="Set scale to 8">8</button>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <button id="btn-reset" type="button">Reset</button>
+      <button id="btn-check" type="button">Check rep-tile</button>
+    </div>
+  </header>
+
+  <!-- Main layout -->
+  <main class="layout">
+    <!-- Left bucket -->
+    <aside class="bucket" id="bucket" aria-label="Shape bucket">
+      <p class="bucket-hint">Drag to place · <kbd>Shift</kbd>-click to set as frame</p>
+      <div id="bucket-list" class="bucket-list"></div>
+    </aside>
+
+    <!-- Canvas area -->
+    <section class="canvas-wrapper" aria-label="Canvas area">
+      <canvas
+        id="canvas"
+        role="application"
+        aria-label="Rep-tile sandbox; arrow keys move, R rotates, D duplicates"
+        tabindex="0"
+      ></canvas>
+      <div id="hint" class="canvas-hint">Click a shape on the left, then click on the grid.</div>
+    </section>
+
+    <!-- Right context panel -->
+    <aside class="context-panel" id="context-panel" aria-label="Piece controls">
+      <div class="context-inner">
+        <button id="btn-rotate-ccw" type="button" disabled aria-label="Rotate counterclockwise 90°">
+          <span class="icon">&#10226;</span> Rotate -45°
+          <kbd>Shift+R</kbd>
+        </button>
+        <button id="btn-rotate-cw" type="button" disabled aria-label="Rotate clockwise 90° (note: R key is CCW per design)">
+          <span class="icon">&#10227;</span> Rotate +45°
+          <kbd>R</kbd>
+        </button>
+        <button id="btn-duplicate" type="button" disabled aria-label="Duplicate piece">
+          <span class="icon">&#9636;</span> Duplicate
+          <kbd>D</kbd>
+        </button>
+        <button id="btn-delete" type="button" disabled aria-label="Delete piece">
+          <span class="icon">&#128465;</span> Delete
+          <kbd>Del</kbd>
+        </button>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Status bar -->
+  <footer class="statusbar">
+    <span id="status-text">0 placed &middot; 0% filled</span>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </footer>
+
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>
